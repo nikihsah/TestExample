@@ -16,7 +16,10 @@ use App\Http\Controllers\RecordsController;
 
 Route::get('/login', [AccountController::class, 'login'])->name('login');
 Route::get('/register', [AccountController::class, 'register'])->name('register');
-Route::get('/', [RecordsController::class, 'records'])->name('/');
 Route::get('/unLogin', [AccountController::class, 'unLogin']);
-Route::post('/newRecords', [RecordsController::class, 'newRecords']);
 Route::post('/loginValidate', [AccountController::class, 'loginValidate']);
+Route::post('/registerValidate', [AccountController::class, 'registerValidate']);
+
+Route::get('/', [RecordsController::class, 'records'])->name('/');
+Route::post('/newRecords', [RecordsController::class, 'newRecords']);
+Route::post('/deleteRecord', [RecordsController::class, 'deleteRecord']);

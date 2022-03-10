@@ -14,7 +14,9 @@ class RecordsController extends Controller
         session_start();
         $records = new RecordsModel();
 
-        return view('records',['records' => $records->all()]);
+        return view('records',['records' => $users = DB::table('records_models')
+            ->orderBy('created_at', 'desc')
+            ->get()]);
     }
 
     public function newRecords(Request $req){
@@ -33,5 +35,9 @@ class RecordsController extends Controller
         return $user[0]->login;
     }
 
+    public function deleteRecord(Request $req){
+        DB::table('records_models')->where('id', '=', $req->input('id'))->delete();
 
+        return redirect()->route('/');
+    }
 }

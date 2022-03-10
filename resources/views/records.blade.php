@@ -35,10 +35,14 @@
                     <p>{{$record->text}}</p>
                 </div>
 
-                @if($record->user!=2)
-
-
-
+                @if(isset($_SESSION['user']))
+                    @if($_SESSION['user']->id == $record->user or $_SESSION['user']->role == 'администратор')
+                        <form class="form-group" action="deleteRecord" method="POST">
+                            @csrf
+                            <input type="hidden" name="id" value="{{$record->id}}">
+                            <button type="submit" class="btn btn-dark right">Удалить запись</button>
+                        </form>
+                    @endif
                 @endif
             </div>
         </div>
