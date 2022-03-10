@@ -4,3 +4,6 @@
 Для запуска локального сервера понадобиться ввести команду "php artisan serve", будучи в каталоге TextExampleCatalog.
 
 Аккаунт администрации login:administration pass:123Admin
+
+Базу данных поднимал с помощью openServer порт прописан в .env. Сама база данных лежит в папке temp.
+Кодировка utf8_general_ci
