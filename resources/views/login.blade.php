@@ -3,8 +3,8 @@
 @section('main_content')
 
     <div class="row">
-        @if(isset($error))
-            <p class="text-danger">{{$error}}</p>
+        @if(isset($_GET['error']))
+            <p class="text-danger col-sm-7" style="float: none; margin: 0 auto;">{{$_GET['error']}}</p>
         @endif
         <form class="form-group col-sm-7" action="loginValidate" method="POST" style="float: none; margin: 0 auto;">
             @csrf

@@ -20,7 +20,6 @@ class AccountController extends Controller
     public function loginValidate(Request $req){
 
         if($id=$this->checkLoginBD($req)){
-
             $user = new UsersModel();
             $user->id = $id;
             $user->login = $req->input('login');
@@ -33,11 +32,11 @@ class AccountController extends Controller
             $_SESSION['user'] = $user;
 
             return redirect()->route('/');
-
-        }else{
+        }else {
             $error = "введены некоректные данные";
         }
-        return redirect()->route('login', ['error' =>$error]);
+
+        return redirect()->route('login', ['error' => $error]);
     }
 
     public function checkLoginBD($dd){
@@ -85,8 +84,9 @@ class AccountController extends Controller
                 return redirect()->route('/');
             }
         }catch(Exception $e){
-            $error = $e;
+            $error = $e->getMessage();
         }
+
         return redirect()->route('register', ['error' => $error]);
     }
 
