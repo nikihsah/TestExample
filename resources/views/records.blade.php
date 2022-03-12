@@ -36,7 +36,7 @@
                 </div>
 
                 @if(isset($_SESSION['user']))
-                    @if($_SESSION['user']->id == $record->user or $_SESSION['user']->role == 'администратор')
+                    @if($_SESSION['user']->id == $record->user and \App\Http\Controllers\RecordsController::Hour2($record) or $_SESSION['user']->role == 'администратор')
                         <form class="form-group" action="deleteRecord" method="POST">
                             @csrf
                             <input type="hidden" name="id" value="{{$record->id}}">

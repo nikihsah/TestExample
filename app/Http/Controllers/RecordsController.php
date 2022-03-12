@@ -14,7 +14,7 @@ class RecordsController extends Controller
         session_start();
         $records = new RecordsModel();
 
-        return view('records',['records' => $users = DB::table('records_models')
+        return view('records',['records' => DB::table('records_models')
             ->orderBy('created_at', 'desc')
             ->get()]);
     }
@@ -36,8 +36,24 @@ class RecordsController extends Controller
     }
 
     public function deleteRecord(Request $req){
+
         DB::table('records_models')->where('id', '=', $req->input('id'))->delete();
 
         return redirect()->route('/');
+    }
+
+    public static function Hour2($record){
+
+        $hour2 = DB::table('records_models')
+            ->where('created_at', '>=', now()->subHour() )
+            ->get();
+        foreach ($hour2 as $rec){
+            if($rec->id == $record->id){
+
+                return true;
+            }
+        }
+
+        return false;
     }
 }
